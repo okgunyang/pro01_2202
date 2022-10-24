@@ -8,7 +8,7 @@
 <style>
 .frm { border:2px solid #333; padding: 24px; width:500px; margin:50px auto; }
 .frm:after { content:""; display:block; clear:both; }
-h2 { text-align:center; }
+h2 { text-align:center; padding-top:40px; }
 .in_dt { background-color:#fff; height:32px; line-height: 32px; width: 280px; 
 color:#f36; font-size:16px; text-indent:0.5em; display:block; float:left; }
 .in_btn { display:block; background-color:#333; min-width:120px; height: 32px; 

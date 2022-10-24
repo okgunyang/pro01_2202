@@ -34,7 +34,7 @@
 		} else {
 			out.println("<p>"+id+"</p>");
 			out.println("<p>사용 가능한 아이디 입니다.</p>");
-			out.println("<a href='javascript:apply(\""+id+"\")'>적용"+"</a>");
+			out.println("<a href='javascript:apply(\""+id+"\")'>"+id+"[적용]</a>");
 			out.println("<p>적용을 누르면, 입력하신 아이디를 사용할 수 있습니다.</p>");
 		}
 %>

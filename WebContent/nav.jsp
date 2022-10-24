@@ -4,6 +4,8 @@
 	String id = (String) session.getAttribute("id");
 	String email = (String) session.getAttribute("email");
 	String name = (String) session.getAttribute("name");
+	
+	String msg = (String) application.getAttribute("msg");
 %>
 <div class="hd_wrap">
     <a href="index.jsp" class="logo">
