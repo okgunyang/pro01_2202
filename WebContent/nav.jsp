@@ -74,7 +74,7 @@
                 <ul class="sub">
                     <li><a href="custom.jsp#page1">자주하는 질문</a></li>
                     <li><a href="custom.jsp#page2">질문 및 답변</a></li>
-                    <li><a href="custom.jsp#page3">공지사항</a></li>
+                    <li><a href="boardList.jsp">게시판</a></li>
                     <li><a href="custom.jsp#page4">온라인 상담</a></li>
                 </ul>
             </li>
