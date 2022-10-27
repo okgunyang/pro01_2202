@@ -17,24 +17,10 @@ String dbid = "system";
 String dbpw = "1234";
 String sql = "";
 int cnt = 0;
-int amount = 0;
-int curPage = 1;
-int pageCount = 1;
-int startNum = 1;
-int endNum = 10;
+
 try {
 	Class.forName("oracle.jdbc.OracleDriver");
 	con = DriverManager.getConnection(url, dbid, dbpw);
-	//게시글 수 카운트
-	sql = "select count(*) cnt from boarda";
-	pstmt = con.prepareStatement(sql);
-	rs = pstmt.executeQuery();
-	if(rs.next()){
-		amount = rs.getInt("cnt");
-	}
-	rs.close();
-	pstmt.close();
-
 %>
 <!DOCTYPE html>
 <html>
@@ -86,6 +72,13 @@ line-height:24px; border-radius:36px; border:2px solid #333; text-align:center; 
 </style>
 <title>게시판 글 목록</title>
 <link rel="stylesheet" href="footer.css">
+<link rel="stylesheet" href="datatables.min.css">
+<script src="datatables.min.js"></script>
+<script>
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
 </head>
 <body>
 <header class="hd">
@@ -101,27 +94,11 @@ line-height:24px; border-radius:36px; border:2px solid #333; text-align:center; 
                 <span class="sel">게시판 목록</span>
             </div>
         </div>
-<%
-	if(request.getParameter("curPage")!=null){
-		curPage = Integer.parseInt(request.getParameter("curPage"));
-	}
-	
-	pageCount = (amount % 10==0) ? (amount / 10) : (amount / 10) + 1;
-	startNum = curPage * 10 - 9;
-	endNum = curPage * 10;
-	if(endNum>amount){
-		endNum = amount;
-	}
-%>
         <section class="page">
             <div class="page_wrap">
                 <h2 class="page_title">게시판 글 목록</h2>
   				<div class="tb_fr">
-  					<div class="tb_com">
-  						<strong class="cur">현재 페이지 : <%=curPage %></strong>
-  						<strong class="total">총 글수 : <%=amount %>건</strong>
-  					</div>
-  					<table class="tb">
+  					<table class="tb" id="myTable">
   						<thead>
   							<tr>
   								<th>연번</th>
@@ -132,18 +109,12 @@ line-height:24px; border-radius:36px; border:2px solid #333; text-align:center; 
   						</thead>
   						<tbody>         
 <%
-		pstmt = null;
-		rs = null;
 		//게시글 검색
-		sql = "select no, title, content, author, resdate from "; 
-		sql = sql +	"(select rownum rn, no, title, content, author, resdate from boarda order by no desc) t1 ";
-		sql = sql + "where t1.rn between ? and ?";
+		sql = "select * from boarda";
 		pstmt = con.prepareStatement(sql);
-		pstmt.setInt(1, startNum);
-		pstmt.setInt(2, endNum);
 		rs = pstmt.executeQuery();
-		cnt = amount - (curPage-1) * 10;
 		while(rs.next()){
+			cnt++;
 			//작성일의 날짜 데이터를 특정 문자열 형식으로 변환
 			SimpleDateFormat yymmdd = new SimpleDateFormat("yyyy-MM-dd");
 			String date = yymmdd.format(rs.getDate("resdate"));
@@ -161,7 +132,6 @@ line-height:24px; border-radius:36px; border:2px solid #333; text-align:center; 
 					<td><%=date %></td>
 			</tr>
 <%		
-			cnt--;
 		}
 	} catch(Exception e) {
 		
@@ -173,26 +143,11 @@ line-height:24px; border-radius:36px; border:2px solid #333; text-align:center; 
 %>
 						</tbody> 
 					</table>
-				<div class="page_nation_fr">
-				<% 
-				   for(int i=1;i<=pageCount;i++) { 
-					   if(i==curPage) {
-				%>
-					<span><%=i %>&nbsp;</span>
-				<% 
-					   } else {
-				%>
-					<a href="boardList.jsp?curPage=<%=i %>">[<%=i %>]&nbsp;</a>
-				<%		   
-					   }
-					} 
-				%>
-				</div>
-				<div class="btn_group">
-					<% if(uid!=null) { %>
-					<a href="boardWrite.jsp" class="btn primary">글쓰기</a>
-					<% } %>
-				</div>	
+					<div class="btn_group">
+						<% if(uid!=null) { %>
+						<a href="boardWrite.jsp" class="btn primary">글쓰기</a>
+						<% } %>
+					</div>	
 			</div>
 		</div>
 	</section>

@@ -17,7 +17,10 @@
 	%>
 		<div>
 	        <a href="memList.jsp">회원 관리</a>
-	        <a href="boardList.jsp">게시판 관리</a>
+	        <a href="boardList0.jsp">게시판 관리0</a>
+	        <a href="boardList.jsp">게시판 관리1</a>
+	        <a href="boardList2.jsp">게시판 관리2</a>
+	        <a href="boardList3.jsp">게시판 관리3</a>
 	        <a href="logout.jsp">로그아웃</a>
 	        <a href="sitemap.jsp">사이트맵</a>
         </div>
@@ -72,10 +75,10 @@
             <li class="item4">
                 <a href="" class="dp1">고객센터</a>
                 <ul class="sub">
-                    <li><a href="custom.jsp#page1">자주하는 질문</a></li>
-                    <li><a href="custom.jsp#page2">질문 및 답변</a></li>
+                    <li><a href="faq.jsp">자주하는 질문</a></li>
+                    <li><a href="qna.jsp">질문 및 답변</a></li>
                     <li><a href="boardList.jsp">게시판</a></li>
-                    <li><a href="custom.jsp#page4">온라인 상담</a></li>
+                    <li><a href="online.jsp">온라인 상담</a></li>
                 </ul>
             </li>
             <li class="item5">

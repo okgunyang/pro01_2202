@@ -113,6 +113,7 @@ line-height:24px; border-radius:36px; border:2px solid #333; text-align:center; 
 		endNum = amount;
 	}
 %>
+
         <section class="page">
             <div class="page_wrap">
                 <h2 class="page_title">게시판 글 목록</h2>
@@ -142,57 +143,57 @@ line-height:24px; border-radius:36px; border:2px solid #333; text-align:center; 
 		pstmt.setInt(1, startNum);
 		pstmt.setInt(2, endNum);
 		rs = pstmt.executeQuery();
-		cnt = amount - (curPage-1) * 10;
+		cnt = startNum - 1;
 		while(rs.next()){
+			cnt++;
 			//작성일의 날짜 데이터를 특정 문자열 형식으로 변환
 			SimpleDateFormat yymmdd = new SimpleDateFormat("yyyy-MM-dd");
 			String date = yymmdd.format(rs.getDate("resdate"));
-%>
+			int no = rs.getInt("no");
+			String title= rs.getString("title"); 
+%>			
 			<tr>
-					<td><%=cnt %></td>
-					<td>
-					<% if(uid!=null) { %>
-						<a href='boardDetail.jsp?no=<%=rs.getInt("no") %>'><%=rs.getString("title") %></a>
-					<% } else { %>
-						<span><%=rs.getString("title") %></span>
-					<% } %>
-					</td>
-					<td><%=rs.getString("author") %></td>
-					<td><%=date %></td>
+				<td><%=cnt %></td>
+				<td>
+<%
+			if(uid!=null) {
+				out.println("<a href='boardDetail.jsp?no="+no+"'>"+title+"</a>");			
+			} else {
+				out.println("<span>"+title+"</span>");
+			}
+%>
+			</td>
+			<td><%=rs.getString("author") %></td>
+			<td><%=date %></td>
 			</tr>
 <%		
-			cnt--;
 		}
 	} catch(Exception e) {
-		
+		System.out.println("데이터베이스 처리 오류");
 	} finally {
 		rs.close();
 		pstmt.close();
 		con.close();
 	}
 %>
-						</tbody> 
-					</table>
-				<div class="page_nation_fr">
-				<% 
-				   for(int i=1;i<=pageCount;i++) { 
-					   if(i==curPage) {
-				%>
-					<span><%=i %>&nbsp;</span>
-				<% 
-					   } else {
-				%>
-					<a href="boardList.jsp?curPage=<%=i %>">[<%=i %>]&nbsp;</a>
-				<%		   
-					   }
-					} 
-				%>
-				</div>
-				<div class="btn_group">
-					<% if(uid!=null) { %>
-					<a href="boardWrite.jsp" class="btn primary">글쓰기</a>
-					<% } %>
-				</div>	
+			</tbody>
+		</table>
+<%
+		out.println("<div class='page_nation_fr'>");
+		   for(int i=1;i<=pageCount;i++) { 
+			   if(i==curPage) {
+					out.println("<span>"+i+"&nbsp;</span>");
+			   } else {
+					out.println("<a href='boardList3.jsp?curPage="+i+"'>["+i+"]&nbsp;</a>");
+			   }
+			} 
+		out.println("</div>");
+		out.println("<div class='btn_group'>");
+		if(uid!=null) {
+			out.println("<a href='boardWrite.jsp' class='btn primary'>글쓰기</a>");
+		} 
+		out.println("</div>");
+%>
 			</div>
 		</div>
 	</section>

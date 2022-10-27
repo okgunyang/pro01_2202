@@ -1,54 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*" %>
 <%
-	request.setCharacterEncoding("UTF-8");
-	response.setCharacterEncoding("UTF-8");
-	response.setContentType("text/html; charset=UTF-8");
-	
-	String sid = (String) request.getAttribute("id");
-	
+	String sid = (String) session.getAttribute("id");
 	int no = Integer.parseInt(request.getParameter("no"));
-	String title = "";
-	String content = "";
-	String uname = "";
-	String resdate = "";
-	String author = "";
-	
-	Connection con = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
-	
-	String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	String dbid = "system";
-	String dbpw = "1234";
-	String sql = "";
-	
-	try {
-		Class.forName("oracle.jdbc.OracleDriver");
-		con = DriverManager.getConnection(url, dbid, dbpw);
-		sql = "select a.no no, a.title title, a.content content, ";
-		sql = sql + "b.name name, a.resdate resdate, a.author author ";
-		sql = sql + "from boarda a inner join membera b ";
-		sql = sql + "on a.author=b.id where a.no=?";
-		pstmt = con.prepareStatement(sql);
-		pstmt.setInt(1, no);
-		rs = pstmt.executeQuery();
-		
-		if(rs.next()){
-			title = rs.getString("title");
-			content = rs.getString("content");
-			uname = rs.getString("name");
-			resdate = rs.getString("resdate");
-			author = rs.getString("author");
-		}
-	} catch(Exception e){
-		e.printStackTrace();
-	} finally {
-		rs.close();
-		pstmt.close();
-		con.close();
-	}
 %>
 <!DOCTYPE html>
 <html>
@@ -85,70 +39,79 @@
     .tb tr:first-child td { border-top:2px solid #333; }
     .tb tr:last-child th { border-bottom:2px solid #333; }
     .tb tr:last-child td { border-bottom:2px solid #333; }
-	.btn_group { clear:both; width:580px; margin:20px auto; }
+	.btn_group { clear:both; width:940px; margin:20px auto; }
 	.btn_group .btn { display:block; float:left; margin:20px; min-width:100px; padding:8px; font-size:14px;
 	line-height:24px; border-radius:36px; border:2px solid #333; text-align:center; }
 	.btn_group .btn.primary { background-color:#333; color:#fff; }
 	.btn_group .btn.primary:hover { background-color:deepskyblue; }
-	.in_data { display:block; float:left; line-height:36px; padding-left:6px; }
+	.in_data { display:block; float:left; line-height:36px; padding-left:6px; 
+	min-width:740px; }
 	textarea { padding:6px; }
     </style>
     <link rel="stylesheet" href="footer.css">
+	<title>글 수정</title>
 </head>
 <body>
-<div class="wrap">
-    <header class="hd">
-		<%@ include file="nav.jsp" %>
-    </header>
-    <div class="content">
-        <figure class="vs">
-            <img src="./img/vs1.jpg" alt="비주얼">
-        </figure>
-        <div class="bread">
-            <div class="bread_fr">
-                <a href="index.jsp" class="home">HOME</a> &gt;
-                <span class="sel">글 수정하기</span>
-            </div>
-        </div>
-        <section class="page">
-            <div class="page_wrap">
-                <h2 class="page_title">글 수정하기</h2>
-  				<div class="frm1">
-  					<form name="frm" action="boardModifyPro.jsp" method="post" class="frm">
-	  					<table class="tb">
-	  						<tbody>             
-								<tr>
-									<th>글 번호</th>
-									<td><%=no %><input type="hidden" name="no" id="no" value="<%=no %>" readonly></td>
-								</tr>
-								<tr>
-									<th>제목</th>
-									<td><input type="text" name="title" id="title" value="<%=title %>" class="in_data" required /></td>
-								</tr>
-								<tr>
-									<th>내용</th>
-									<td>
-										<textarea cols="100" rows="8" name="content" id="content"><%=content %></textarea>
-									</td>
-								</tr>
-								<tr>
-									<th>작성자</th>
-									<td><%=uname %></td>
-								</tr>
-							</tbody> 
-						</table>
-						<div class="btn_group">
-							<button type="submit" class="btn primary">글 수정하기</button>
-							<a href="boardList.jsp" class="btn primary">게시판 목록</a>
-						</div>
-					</form>
-				</div>
+<header class="hd">
+	<%@ include file="nav.jsp" %>
+</header>
+<div class="content">
+       <figure class="vs">
+           <img src="./img/vs1.jpg" alt="비주얼">
+       </figure>
+       <div class="bread">
+           <div class="bread_fr">
+               <a href="index.jsp" class="home">HOME</a> &gt;
+               <span class="sel">글 수정</span>
+           </div>
+       </div>
+       <section class="page">
+           <div class="page_wrap">
+               <h2 class="page_title">글 수정하기</h2>
+			<%@ include file="connectionPool.conf" %>
+			<%
+				sql = "select * from boarda where no=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, no);
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+			%>
+			<div class="frm1">
+				<form name="frm" class="frm" action="boardModifyPro.jsp" method="post">
+					<input type="hidden" name="no" id="no" value='<%=rs.getInt("no") %>' required>
+					<table class="tb">
+						<tbody>
+							<tr>
+								<th><label for="title">제목</label></th>
+								<td><input type="text" name="title" id="title" placeholder="제목 입력" class="in_data" value='<%=rs.getString("title") %>' required></td>
+							</tr>
+							<tr>
+								<th><label for="content">내용</label></th>
+								<td>
+									<textarea cols="100" rows="6" name="content" id="content" class="in_data2"><%=rs.getString("content") %></textarea>
+								</td>
+							</tr>
+							<tr>
+								<th><label for="author">작성자</label></th>
+								<td><%=rs.getString("author") %></td>
+							</tr>
+						</tbody>
+					</table>
+				<%
+					}
+				%>
+				<%@ include file="connectionClose.conf" %>
+					<div class="btn_group">
+						<button type="submit" class="btn primary">글 수정</button>
+						<a href="boardList.jsp" class="btn primary">목록으로</a>
+					</div>
+				</form>
 			</div>
-        </section>
-    </div>
-    <footer class="ft">
-		<%@ include file="footer.jsp" %>
-    </footer>
+		</div>
+	</section>
 </div>
+<footer class="ft">
+	<%@ include file="footer.jsp" %>
+</footer>
 </body>
 </html>

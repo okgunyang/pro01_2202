@@ -21,7 +21,7 @@
 <!-- 각 종 플러그인과 설정 파일 -->
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <!-- 구형 브라우저 html5태그 인식 -->
-<script src="./js/html5shiv.js"></script>
+<!-- <script src="./js/html5shiv.js"></script> -->
 <!-- 구형 브라우저에서 css animation 인식 -->
 <script src="./js/prefixfree.min.js"></script>
 <!-- 구형 브라우저에서 미디어쿼리 인식 -->

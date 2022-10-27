@@ -1,17 +1,39 @@
+-- 회원 가입
 insert into membera values ('kkt', '1111', '김기태', 'kkt@gmail.com','010-1004-1234',SYSDATE);
 insert into membera values ('admin', '1234', '관리자', 'admin@website.com','010-1234-1234',SYSDATE);
+-- insert into membera values (?,?,?,?,?,sysdate);
+-- pstmt.setString(1, id);
+-- pstmt.setString(2, pw);
+-- pstmt.setString(3, name);
+-- pstmt.setString(4, email);
+-- pstmt.setString(5, tel);
+
+-- 회원 목록
 select * from membera;
 
-insert into boarda values (bseq.nextval, '테스트 글1', '테스트 글1의 내용입니다.', 'kkt', sysdate);
-insert into boarda values (bseq.nextval, '테스트 글2', '테스트 글2의 내용입니다.', 'kkt', sysdate);
-insert into boarda values (bseq.nextval, '테스트 글3', '테스트 글3의 내용입니다.', 'admin', sysdate);
-insert into boarda values (bseq.nextval, '테스트 글4', '테스트 글4의 내용입니다.', 'kkt09072', sysdate);
-insert into boarda values (bseq.nextval, '테스트 글5', '테스트 글5의 내용입니다.', 'admin', sysdate);
-insert into boarda values (bseq.nextval, '테스트 글6', '테스트 글6의 내용입니다.', 'admin', sysdate);
-insert into boarda values (bseq.nextval, '테스트 글7', '테스트 글7의 내용입니다.', 'kkt09072', sysdate);
-insert into boarda values (bseq.nextval, '테스트 글8', '테스트 글8의 내용입니다.', 'kkt', sysdate);
-insert into boarda values (bseq.nextval, '테스트 글9', '테스트 글9의 내용입니다.', 'admin', sysdate);
-insert into boarda values (bseq.nextval, '테스트 글10', '테스트 글10의 내용입니다.', 'admin', sysdate);
-insert into boarda values (bseq.nextval, '테스트 글11', '테스트 글11의 내용입니다.', 'kkt', sysdate);
+-- 로그인
+select * from membera where id='kkt' and pw='1111';
+-- "select * from membera where id='"+id+"' and pw="'"+pw+"';  -- Statement
+-- select * from membera where id=? and pw=?;	-- PrepareStatement
+-- pstmt.setString(1, id);
+-- pstmt.setString(2, pw);
+
+
+-- 회원 정보 수정
+update membera set pw='4444', tel='010-4444-4444', email='kkk@gmail.com' where id='kkt'; 
+-- update membera set pw=?, tel=?, email=? where id=?;
+-- pstmt.setString(1, pw);
+-- pstmt.setString(2, tel);
+-- pstmt.setString(3, email);
+-- pstmt.setString(4, id);
+
+-- 회원 탈퇴
+delete from membera where id='kkt';
+-- delete from membera where id=?;
+-- pstmt.setString(1, id);
+
 
 select * from boarda order by resdate;
+
+
+
