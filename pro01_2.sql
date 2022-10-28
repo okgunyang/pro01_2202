@@ -1,3 +1,12 @@
+create table boardA(
+	no number primary key,    -- (글번호) 자동발생
+	title varchar2(100) not null,	-- (글제목)
+	content	varchar2(600),      -- (글내용)
+	author varchar2(16),    -- (작성자)
+	resdate	date default sysdate,    -- (작성일)
+    CONSTRAINT fk_id FOREIGN key(author) REFERENCES memberA(id) 
+);
+
 -- 글 추가(등록)
 insert into boarda values (bseq.nextval, '테스트 글1', '테스트 글1의 내용입니다.', 'kkt', sysdate);
 insert into boarda values (bseq.nextval, '테스트 글2', '테스트 글2의 내용입니다.', 'kkt', sysdate);

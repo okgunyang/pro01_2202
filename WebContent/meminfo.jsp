@@ -92,19 +92,19 @@
 							<tr>
 								<th><label for="pw">비밀번호</label></th>
 								<td>
-									<input type="password" name="pw" id="pw" class="in_data" value='<%=rs.getString("pw") %>' required>
+									<input type="password" name="pw" id="pw" class="in_data" value='<%=rs.getString("pw") %>' placeholder="영문숫자특수문자를 혼합하여 8글자 이상" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" required>
 								</td>
 							</tr>
 							<tr>
 								<th><label for="pw2">비밀번호 확인</label></th>
 								<td>
-									<input type="password" name="pw2" id="pw2" class="in_data" required>
+									<input type="password" name="pw2" id="pw2" class="in_data"  placeholder="영문숫자특수문자를 혼합하여 8글자 이상" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" required>
 								</td>
 							</tr>
 							<tr>
 								<th><label for="name">회원명</label></th>
 								<td>
-									<input type="text" name="name" id="name" class="in_data" value='<%=rs.getString("name") %>' required>
+									<input type="text" name="name" id="name" class="in_data" value='<%=rs.getString("name") %>' placeholder="한글 이름 입력" pattern="\[^(가-힝)]\" required>
 								</td>
 							</tr>
 							<tr>
@@ -116,7 +116,7 @@
 							<tr>
 								<th><label for="tel">연락처</label></th>
 								<td>
-									<input type="tel" name="tel" id="tel" class="in_data" value='<%=rs.getString("tel") %>' required >
+									<input type="tel" name="tel" id="tel" class="in_data" value='<%=rs.getString("tel") %>' pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" required >
 								</td>
 							</tr>
 						</tbody>

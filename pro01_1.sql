@@ -1,3 +1,11 @@
+create table memberA( 
+    id varchar2(16)	primary key,
+	pw varchar2(20)	not null,
+	name varchar2(50) not null,
+	email varchar2(100),
+	tel	varchar2(13),
+	regdate	date
+);
 
 -- 회원 가입
 insert into membera values ('kkt', '1111', '김기태', 'kkt@gmail.com','010-1004-1234',SYSDATE);

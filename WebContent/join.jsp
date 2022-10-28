@@ -27,10 +27,10 @@
     .frm_tb tr { display:table-row; }
     .frm_tb td, .frm_tb th { display:table-cell; }
     .frm_tb th { width:200px; height: 48px;  }
-    .frm_tb td { width:500px; height: 48px; }
+    .frm_tb td { width:650px; height: 48px; }
     .frm_tb label:before { content:"*"; }
 
-    .in_dt { background-color:#fff; height:32px; line-height: 32px; width: 280px; 
+    .in_dt { background-color:#fff; height:32px; line-height: 32px; width: 410px; 
     color:#f36; font-size:16px; text-indent:0.5em; }
     .in_btn { display:block; background-color:#333; min-width:120px; height: 32px; 
     line-height: 32px; border-radius:20px; float:left; margin-left:80px; margin-right:20px; cursor:pointer; }
@@ -87,7 +87,7 @@
                                 <tr>
                                     <th><label for="id">아이디</label></th>
                                     <td>
-                                        <input type="text" id="id" name="id" class="in_dt" style="display:block; float:left;" required autofocus>
+                                        <input type="text" id="id" name="id" class="in_dt" style="display:block; float:left;" placeholder="영문소문자와 숫자를 혼합하여 8글자 이상 12글자 이하" minlength="8" maxlength="8" pattern="[a-z0-9]{8,12}" required autofocus>
                                         <button type="button" class="in_btn" onclick="idCheck()" style="margin-left:20px">아이디 중복 확인</button>
                                         <input type="hidden" name="idck" value="no" />
                                     </td>
@@ -95,19 +95,19 @@
                                 <tr>
                                     <th><label for="pw">비밀번호</label></th>
                                     <td>
-                                        <input type="password" id="pw" name="pw" class="in_dt" required>
+                                        <input type="password" id="pw" name="pw" class="in_dt"  placeholder="영문숫자특수문자를 혼합하여 8글자 이상" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" required>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th><label for="pw2">비밀번호 확인</label></th>
                                     <td>
-                                        <input type="password" id="pw2" name="pw2" class="in_dt" required>
+                                        <input type="password" id="pw2" name="pw2" class="in_dt" placeholder="영문숫자특수문자를 혼합하여 8글자 이상" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" required>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th><label for="name">이  름</label></th>
                                     <td>
-                                        <input type="text" id="name" name="name" class="in_dt" required>
+                                        <input type="text" id="name" name="name" class="in_dt" placeholder="한글 이름 입력" pattern="\[^(가-힝)]\" required>
                                     </td>
                                 </tr>
                                 <tr>
@@ -119,7 +119,7 @@
                                 <tr>
                                     <th><label for="tel">연락처</label></th>
                                     <td>
-                                        <input type="tel" id="tel" name="tel" class="in_dt" required>
+                                        <input type="tel" id="tel" name="tel" class="in_dt" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" placeholder="000-0000-0000" required>
                                     </td>
                                 </tr>
                                 <tr>

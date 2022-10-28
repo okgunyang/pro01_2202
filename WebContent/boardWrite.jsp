@@ -73,12 +73,12 @@
 						<tbody>
 							<tr>
 								<th><label for="title">제목</label></th>
-								<td><input type="text" name="title" id="title" placeholder="제목 입력" class="in_data" required></td>
+								<td><input type="text" name="title" id="title" placeholder="제목 입력" maxlength="100" class="in_data" required></td>
 							</tr>
 							<tr>
 								<th><label for="content">내용</label></th>
 								<td>
-									<textarea cols="100" rows="6" name="content" id="content" class="in_data2"></textarea>
+									<textarea cols="100" rows="6" name="content" id="content" maxlength="600" class="in_data2"></textarea>
 								</td>
 							</tr>
 							<tr>

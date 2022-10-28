@@ -17,7 +17,7 @@ line-height: 32px; border-radius:20px; float:left; margin-left:20px; margin-righ
 </style>
 <title>아이디 중복 확인</title>
 </head>
-<body>
+<body onload="idInput()">
 <div class="fr">
 	<h2>아이디 중복 검사</h2>
 	<form action="idCheckPro.jsp" method="post" class="frm" onsubmit="return invalidCheck(this)">
@@ -25,6 +25,9 @@ line-height: 32px; border-radius:20px; float:left; margin-left:20px; margin-righ
 		<input type="submit" class="in_btn" value="중복확인">
 	</form>
 	<script>
+	function idInput(){
+		document.getElementById("id").value = opener.document.frm1.id.value;
+	}
 	function invalidCheck(f){
 		var id = f.id.value;
 		id = id.trim();
