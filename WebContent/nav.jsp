@@ -76,9 +76,11 @@
                 <a href="" class="dp1">고객센터</a>
                 <ul class="sub">
                     <li><a href="faq.jsp">자주하는 질문</a></li>
-                    <li><a href="qna.jsp">질문 및 답변</a></li>
+                    <li><a href="qnaList.jsp">질문 및 답변</a></li>
                     <li><a href="boardList.jsp">게시판</a></li>
+                    <% if(id!=null){ %>
                     <li><a href="online.jsp">온라인 상담</a></li>
+                    <% } %>
                 </ul>
             </li>
             <li class="item5">

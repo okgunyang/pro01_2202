@@ -14,5 +14,8 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/admin/Downloads/activation.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin/Downloads/javax.mail-1.5.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin/Downloads/javax.mail-api-1.5.5.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

@@ -20,6 +20,8 @@ insert into faqa values (fseq.nextval, '질문3에 대한 답변', '질문3에 �
 insert into faqa values (fseq.nextval, '질문4에 대한 답변', '질문4에 대한 답변 내용입니다.', 'admin', sysdate, 1, 4);
 insert into faqa values (fseq.nextval, '질문5에 대한 답변', '질문5에 대한 답변 내용입니다.', 'admin', sysdate, 1, 5);
 select * from faqa order by parno asc, gubun asc;
+select * from all_sequences where sequence_owner = 'SYSTEM' and SEQUENCE_NAME = 'FSEQ';
+select FSEQ.currval from DUAL;
 
 -- 질문 등록
 -- insert into faqa values (fseq.nextval, ?, ?, 'admin', sysdate, 0, fseq.currval);
@@ -32,8 +34,8 @@ select * from faqa order by parno asc, gubun asc;
 
 -- 질문 및 답변 삭제
 -- delete from faqa where parno=?
-delete from faqa where parno=16;
-select fseq.currval from dual;
+delete from faqa where parno=13;
+
 commit;
 
 
