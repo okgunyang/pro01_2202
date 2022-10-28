@@ -87,7 +87,7 @@
                                 <tr>
                                     <th><label for="id">아이디</label></th>
                                     <td>
-                                        <input type="text" id="id" name="id" class="in_dt" style="display:block; float:left;" placeholder="영문소문자와 숫자를 혼합하여 8글자 이상 12글자 이하" minlength="8" maxlength="8" pattern="[a-z0-9]{8,12}" required autofocus>
+                                        <input type="text" id="id" name="id" class="in_dt" style="display:block; float:left;" placeholder="영문소문자와 숫자를 혼합하여 8글자 이상 12글자 이하" maxlength="12" pattern="[a-z0-9]{8,12}" required autofocus>
                                         <button type="button" class="in_btn" onclick="idCheck()" style="margin-left:20px">아이디 중복 확인</button>
                                         <input type="hidden" name="idck" value="no" />
                                     </td>
@@ -107,7 +107,7 @@
                                 <tr>
                                     <th><label for="name">이  름</label></th>
                                     <td>
-                                        <input type="text" id="name" name="name" class="in_dt" placeholder="한글 이름 입력" pattern="\[^(가-힝)]\" required>
+                                        <input type="text" id="name" name="name" class="in_dt" placeholder="한글 이름 입력" pattern="\[^(가-힣)]\" required>
                                     </td>
                                 </tr>
                                 <tr>

@@ -104,7 +104,7 @@
 							<tr>
 								<th><label for="name">회원명</label></th>
 								<td>
-									<input type="text" name="name" id="name" class="in_data" value='<%=rs.getString("name") %>' placeholder="한글 이름 입력" pattern="\[^(가-힝)]\" required>
+									<input type="text" name="name" id="name" class="in_data" value='<%=rs.getString("name") %>' placeholder="한글 이름 입력" pattern="\[^(가-힣)]\" required>
 								</td>
 							</tr>
 							<tr>

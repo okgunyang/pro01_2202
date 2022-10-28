@@ -84,7 +84,7 @@
 							<tr>
 								<th><label for="content2">답변 내용</label></th>
 								<td>
-									<textarea cols="100" rows="6" name="content2" id="content2" class="in_data2"></textarea>
+									<textarea cols="100" rows="6" name="content2" id="content2" maxlength="600" class="in_data2"></textarea>
 								</td>
 							</tr>
 							<tr>
