@@ -10,7 +10,8 @@
 	
 	//메일 폼에서 보내온 데이터 받기
 	String name = request.getParameter("name");
-	String from = "kkt09072@naver.com";
+	String from = request.getParameter("from");
+	String from2 = "kkt09072@naver.com";
 	String tel = request.getParameter("tel");
 	String title = request.getParameter("title");
 	String content = request.getParameter("content");
@@ -38,17 +39,17 @@
 		
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("보내는 사람 : ");
-		buffer.append(name+" ");
+		buffer.append(name+"\n");
 		buffer.append("연락처 : ");
-		buffer.append(tel+" ");		
+		buffer.append(tel+"\n");		
 		buffer.append("이메일 : ");
-		buffer.append(from+" ");		
+		buffer.append(from+"\n");		
 		buffer.append("제목 : ");
-		buffer.append(title+" ");
+		buffer.append(title+"\n");
 		buffer.append("내용 : ");
-		buffer.append(content+" ");
+		buffer.append(content+"\n");
 		
-		Address fromAddr = new InternetAddress(from);
+		Address fromAddr = new InternetAddress(from2);
 		msg.setFrom(fromAddr);	
 
 		Address toAddr = new InternetAddress(to);
@@ -60,5 +61,7 @@
 	} catch(Exception e){
 		e.printStackTrace();
 		return;
+	} finally {
+		response.sendRedirect("index.jsp");
 	}
 %>
