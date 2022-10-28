@@ -30,7 +30,7 @@
 		<div>
 			<span class="name_print"><%=name %>님</span>
 	        <a href="logout.jsp">로그아웃</a>
-	        <a href="memInfo.jsp">회원정보</a>
+	        <a href="meminfo.jsp">회원정보</a>
 	        <a href="sitemap.jsp">사이트맵</a>
         </div>
 	<%
